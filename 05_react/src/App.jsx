@@ -33,7 +33,7 @@ function App() {
 
   useEffect(()=>{
     passgen()
-  },[length,numbers,chara])
+  },[])  //
 
   return (
     <>
