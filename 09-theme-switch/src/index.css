@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@layer utilities {
+  .dark & {
+    background-color: theme('colors.gray.900');
+  }
+}
