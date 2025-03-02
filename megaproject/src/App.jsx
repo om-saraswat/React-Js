@@ -1,12 +1,29 @@
-import { useState } from 'react'
+import { useState,useEffect} from 'react'
 import conf from "../src/config/conf"
+import {login,logout} from "../src/Store/authslice"
+import { useDispatch }from "react-redux"
+import authservice from '../appwrite/auth'
+
 
 function App() {
-  const [count, setCount] = useState(0)
-  console.log(conf.appwritebucketid)
-  return (
-   <h1 className='text-red-700'>heellllooo</h1>
-  )
+  const [loading, setloading] = useState(true)
+  const dispatch  = useDispatch()
+  
+  useEffect(()=>{
+    authservice.getuser().then((userData)=>{
+      if(userData){
+      dispatch(login(userData))
+      }
+      else{
+        dispatch(logout())
+      }
+    }).finally(()=>{setloading(false)})
+  })
+
+
+  return !loading ? (
+    <h1>hello</h1>
+  ) : null
 }
 
 export default App
