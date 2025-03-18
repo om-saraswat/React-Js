@@ -6,7 +6,7 @@ import Logo from './Logo'
 import Input from './Input'
 import {useDispatch} from 'react-redux'
 import authservice from '../../appwrite/auth'
-import {set, useForm} from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 
 function Login() {
     const navigate = useNavigate()
