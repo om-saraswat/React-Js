@@ -25,10 +25,29 @@ function Postform({Post}) {
             const file = Data[0].image ? appwriteservice.uploadfile(Data[0].image):null 
         
             if(file){
-                appwriteservice.deletefile(Post.featuredimage)
+                appwriteservice.deletefile(Post.featuredImage)
             }
+            const dbpost = await appwriteservice.updatepost(Post.$id,{
+                ...Data,
+            })
+            if(dbpost){
+                navigate('/Post/dbpost.$id')
+            }
+        }
+        else{
+            const file = appwriteservice.uploadfile(Data.image[0]) 
+            if(file){
+                const fileid = file.$id
+                Data.featuredImage = fileid
+                const dbpost = appwriteservice.createpost({...Data,userId: userdata.$id,}) 
+                if(dbpost){
+                    navigate('/Post/dbpost.$id')
+                }
+            }
+            
         } 
     }
+    
 
   return (
     <div>Postform</div>
