@@ -54,7 +54,7 @@ export class Service {
     }
     async getpost(slug){
         try{
-         return await this.databases.getDocumentDocument(
+         return await this.databases.getDocument(
             conf.appwritedatabaseid,
             conf.appwritecollectionid,
             slug,
@@ -68,7 +68,7 @@ export class Service {
     }
     async getposts(query = [Query.equal("status","active")]){
         try{
-         return await this.databases.getDocumentDocument(
+         return await this.databases.listDocuments (
             conf.appwritedatabaseid,
             conf.appwritecollectionid,
                 query
